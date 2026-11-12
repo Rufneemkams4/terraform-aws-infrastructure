@@ -1,2 +1,31 @@
-.terraform
-terraform.tfstate
+# Terraform working directories
+**/.terraform/*
+
+# Local Terraform state
+*.tfstate
+*.tfstate.*
+*.tfstate.lock.info
+
+# Terraform plans
+*.tfplan
+tfplan
+tfplan.*
+
+# Terraform variable files that may contain secrets
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Local environment files
+.env
+.env.*
+# Repository review archives
+*-review.zip
