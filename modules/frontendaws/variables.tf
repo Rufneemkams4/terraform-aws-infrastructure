@@ -3,7 +3,7 @@ variable "bucket_name" {
 }
 
 variable "aws_origin_access_name" {
-  
+
 }
 
 variable "cloudfront_default_object" {
@@ -15,13 +15,13 @@ variable "cloudfront_origin_id" {
 }
 
 variable "cert_domain" {
-  
+
 }
 
 variable "dns_record" {
-  
+
 }
 
 variable "hosted_zone_name" {
-  
+
 }

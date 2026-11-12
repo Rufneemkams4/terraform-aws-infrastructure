@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "frontend_bucket" {
 }
 # Block all public network access to the S3 bucket
 resource "aws_s3_bucket_public_access_block" "frontend_bucket_block" {
-  bucket = aws_s3_bucket.frontend_bucket.id
+  bucket                  = aws_s3_bucket.frontend_bucket.id
   block_public_acls       = true
   ignore_public_acls      = true
   block_public_policy     = true
@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "frontend_cdn" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     viewer_protocol_policy = "redirect-to-https"
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6"
   }
   restrictions {
     geo_restriction {

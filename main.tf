@@ -1,14 +1,14 @@
 # Vpc
 resource "aws_vpc" "vpc1" {
-  cidr_block       = var.vpc-cidr_block
-  instance_tenancy = "default"
+  cidr_block           = var.vpc-cidr_block
+  instance_tenancy     = "default"
   enable_dns_hostnames = true
-  enable_dns_support = true
-  
- 
+  enable_dns_support   = true
+
+
   tags = {
     Name = "Vpc-resume-app"
-    env = "dev"
+    env  = "dev"
     Team = "devops"
   }
 }
@@ -19,21 +19,21 @@ resource "aws_internet_gateway" "gw" {
   tags = {
     Name = "IGW"
   }
- //    depends_on = [ aws_vpc.vpc1 ]
+  //    depends_on = [ aws_vpc.vpc1 ]
 }
 # Public Subnet
 
 resource "aws_subnet" "sub1" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
   tags = {
     Name = "public-1a"
   }
 }
 resource "aws_subnet" "sub2" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.2.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-1b"
   tags = {
     Name = "public-1b"
@@ -42,16 +42,16 @@ resource "aws_subnet" "sub2" {
 # Private Subnet
 
 resource "aws_subnet" "sub3" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.3.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.3.0/24"
   availability_zone = "us-east-1a"
   tags = {
     Name = "private-1a"
   }
 }
 resource "aws_subnet" "sub4" {
-  vpc_id     = aws_vpc.vpc1.id
-  cidr_block = "10.0.4.0/24"
+  vpc_id            = aws_vpc.vpc1.id
+  cidr_block        = "10.0.4.0/24"
   availability_zone = "us-east-1b"
   tags = {
     Name = "private-1b"
@@ -71,7 +71,7 @@ resource "aws_nat_gateway" "nat1" {
 // Elastic ip for Nat Gateway
 
 resource "aws_eip" "eip" {
-  
+
 }
 # public route table
 
@@ -86,7 +86,7 @@ resource "aws_route_table" "public_rt" {
 resource "aws_route" "public_internet_route" {
   route_table_id         = aws_route_table.public_rt.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.gw.id 
+  gateway_id             = aws_internet_gateway.gw.id
 }
 # 3. Associate the Route Table with a Subnet
 resource "aws_route_table_association" "public_subnet_assoc" {
